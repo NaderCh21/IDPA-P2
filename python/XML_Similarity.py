@@ -8,6 +8,7 @@ from nltk import pos_tag
 import string
 import numpy as np
 
+
 # Function to normalize and preprocess text
 def normalize_text(text):
     # Tokenize the input text into individual words
@@ -55,6 +56,7 @@ def normalize_text(text):
     # Return the list of lemmatized words as a space-separated string
     return " ".join(lemmatized)
 
+
 def get_document_fields(xml_path):
     # Parse the XML file and get a list of unique fields
     tree = ET.parse(xml_path)
@@ -100,17 +102,23 @@ def vectorize_and_compute_similarity(xml_path1, xml_path2):
     for element in root1.iter():
         if len(element) == 0:
             field_name = element.tag
-            field_texts1[field_name] = field_texts1.get(field_name, []) + [normalize_text(element.text.strip()) if element.text else ""]
+            field_texts1[field_name] = field_texts1.get(field_name, []) + [
+                normalize_text(element.text.strip()) if element.text else ""
+            ]
 
     for element in root2.iter():
         if len(element) == 0:
             field_name = element.tag
-            field_texts2[field_name] = field_texts2.get(field_name, []) + [normalize_text(element.text.strip()) if element.text else ""]
+            field_texts2[field_name] = field_texts2.get(field_name, []) + [
+                normalize_text(element.text.strip()) if element.text else ""
+            ]
 
     # Combine texts from both documents for each field
     combined_texts = {}
     for field_name in common_fields:
-        combined_texts[field_name] = field_texts1.get(field_name, []) + field_texts2.get(field_name, [])
+        combined_texts[field_name] = field_texts1.get(
+            field_name, []
+        ) + field_texts2.get(field_name, [])
 
     # Print the terms and field vectors for each document
     print("\nDocument 1:")
@@ -138,8 +146,8 @@ def vectorize_and_compute_similarity(xml_path1, xml_path2):
         vectors = X.toarray()
 
         # Separate vectors for each document
-        vectors1 = vectors[:len(field_texts1.get(field_name, []))]
-        vectors2 = vectors[len(field_texts1.get(field_name, [])):]
+        vectors1 = vectors[: len(field_texts1.get(field_name, []))]
+        vectors2 = vectors[len(field_texts1.get(field_name, [])) :]
 
         # Compute cosine similarity for each pair of vectors
         similarities = cosine_similarity(vectors1, vectors2)
@@ -153,17 +161,20 @@ def vectorize_and_compute_similarity(xml_path1, xml_path2):
 
     return final_similarity_score, field_similarities
 
-# # Specify the paths of the two XML files
-# xml_file_path1 = "../testingfiles/city1.xml"
-# xml_file_path2 = "../testingfiles/city2.xml"
 
-# # Vectorize and compute cosine similarity
-# final_similarity, field_similarities = vectorize_and_compute_similarity(xml_file_path1, xml_file_path2)
+# Specify the paths of the two XML files
+xml_file_path1 = "testingfiles\city2.xml"
+xml_file_path2 = "testingfiles\city5.xml"
 
-# # Print the terms and vectors for each field
-# for field_name, similarity_matrix in field_similarities.items():
-#     print(f"\n{field_name} Cosine Similarity:")
-#     print(similarity_matrix)
+# Vectorize and compute cosine similarity
+final_similarity, field_similarities = vectorize_and_compute_similarity(
+    xml_file_path1, xml_file_path2
+)
 
-# # Print the final similarity score
-# print(f"\nFinal Similarity Score: {final_similarity}")
+# Print the terms and vectors for each field
+for field_name, similarity_matrix in field_similarities.items():
+    print(f"\n{field_name} Cosine Similarity:")
+    print(similarity_matrix)
+
+# Print the final similarity score
+print(f"\nFinal Similarity Score: {final_similarity}")
