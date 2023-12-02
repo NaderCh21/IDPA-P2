@@ -1,0 +1,15 @@
+<city type="Tokyo">
+
+    <location>Japan</location>
+    <about> is the capital of Egypt and the largest city in the Arab world</about>
+    <Hotels number = "3">
+    <hotel rate= "4 stars" loc = " Nishi-Ikebukuro">Hotel Metropolitan Tokyo Ikebukuro</hotel>
+    <hotel rate= "5 stars" loc = "Taito">Oakwood Premier Tokyo</hotel>
+    <hotel rate= "5 stars" loc = "Chiyoda">The Peninsula Tokyo</hotel>
+    </Hotels>
+    <places number = "2">
+        <place type="Historical Temple"> Senso-ji Temple</place>
+        <place type="Historical place" >Meiji Jingu Shrine</place>
+    </places>
+    
+</city>

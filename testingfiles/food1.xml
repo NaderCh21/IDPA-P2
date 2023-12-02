@@ -1,0 +1,15 @@
+<food type="fruit">
+    Coconut
+    <location>Islands like Hawaii</location>
+    <texture>rough from the outside, very watery from the inside</texture>
+    <eat>
+    <how2eat step= "1">you can use a straw to drink the water</how2eat>
+    <how2eat step="2">you can brake it and eat what is inside</how2eat>
+    <how2eat step="3">you can cook it and enjoy lots of sweets</how2eat>
+    </eat>
+    <colors number = "2">
+        <color>brown</color>
+        <color>white</color>
+    </colors>
+    
+</food>

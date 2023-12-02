@@ -1,0 +1,12 @@
+<food type="fruit">
+    Watermellon
+    <season>summer fruit</season>
+    <eat>
+    <taste> sweet and refreshing</taste>
+    </eat>
+    <colors number = "2">
+        <color>red</color>
+        <color>green</color>
+    </colors>
+    
+</food>

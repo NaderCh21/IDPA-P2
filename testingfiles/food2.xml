@@ -1,0 +1,15 @@
+<food type="fruit">
+    Coconut
+    <location>Hawaii</location>
+    <texture>rough</texture>
+    <eat>
+    <how2eat step= "1"> use a straw to drink the water</how2eat>
+    <how2eat step="2"> brake it and eat </how2eat>
+    <how2eat step="3"> cook it </how2eat>
+    </eat>
+
+    <color>brown</color>
+    <color>white</color>
+    
+    
+</food>

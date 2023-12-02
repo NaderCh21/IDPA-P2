@@ -1,0 +1,10 @@
+<food type="fruit">
+    Coconut
+    <location>Islands like Hawaii</location>
+    <texture>rough from the outside, very watery from the inside</texture>
+    <colors number = "2">
+        <color>brown</color>
+        <color>white</color>
+    </colors>
+    
+</food>

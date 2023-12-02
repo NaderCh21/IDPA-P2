@@ -1,0 +1,16 @@
+<food type="fruit">
+    watermellon
+    <location>many places</location>
+    <season>summer</season>
+    <texture>hard but smooth from the outside, very watery from the inside</texture>
+    <eat>
+    <how2eat>you can brake it and eat what is inside</how2eat>
+    <how2eat>you can create smoothies from it</how2eat>
+    </eat>
+    <colors number = "3">
+        <color>green</color>
+        <color>red</color>
+        <color>black</color>
+  </colors>
+    
+</food>

@@ -1,6 +1,16 @@
-<root>
-    <Student>Nader is a beautiful guy</Student>
-    <Age>Nader is 18 years old</Age>
-    <Gender>He is male</Gender>
-    <Nader>Chanaa</Nader>
-</root>
+<city type="Istanbul">
+
+    <location>Turkey</location>
+    <about>formerly known as Constantinople, is the largest city in Turkey, serving as the country's economic, cultural and historic hub</about>
+    <Hotels number = "3">
+    <hotel rate= "5 stars" loc = "Taksim">Swissotel The Bosphorus Istanbul</hotel>
+    <hotel rate= "5 stars" loc = "Taksim">Taksim The Peak Hotel and SPA</hotel>
+    <hotel rate= "4 stars" loc = "Asian Side">ISG Sabiha Gökçen Airport Hotel</hotel>
+    </Hotels>
+    <places number = "3">
+        <place type="Historical Mosque">Blue Mosque</place>
+        <place type="Historical Palace" otherNames = "Cannon Gate" >Topkapi Palace</place>
+        <place type="Historical Palace">Dolmabahçe Palace</place>
+    </places>
+    
+</city>
