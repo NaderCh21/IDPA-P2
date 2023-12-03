@@ -12,7 +12,8 @@ def compute_xml_similarity_matrix(xml_paths, vectorize_and_compute_similarity):
     for i in range(n):
         for j in range(i + 1, n):
             similarity, _ = vectorize_and_compute_similarity(xml_paths[i], xml_paths[j])
-            similarity_matrix[i, j] = similarity_matrix[j, i] = similarity
+            # Use 1 - similarity to represent dissimilarity (lower values mean more similarity)
+            similarity_matrix[i, j] = similarity_matrix[j, i] = 1 - similarity
 
     return similarity_matrix
 
@@ -61,10 +62,12 @@ def plot_cluster_results(xml_paths, cluster_assignments):
 
 
 xml_paths = [
-    "testingfiles\city1.xml",
-    "testingfiles\city2.xml",
-    "testingfiles\city3.xml",
-    "testingfiles\city4.xml",
+    "../testingfiles/city1.xml",
+    "../testingfiles/city2.xml",
+    "../testingfiles/city3.xml",
+    "../testingfiles/city4.xml",
+    "../testingfiles/food1.xml",
+    "../testingfiles/food2.xml",
 ]
 
 # Compute XML similarity matrix

@@ -162,19 +162,19 @@ def vectorize_and_compute_similarity(xml_path1, xml_path2):
     return final_similarity_score, field_similarities
 
 
-# Specify the paths of the two XML files
-xml_file_path1 = "testingfiles\city2.xml"
-xml_file_path2 = "testingfiles\city5.xml"
+# # Specify the paths of the two XML files
+# xml_file_path1 = "testingfiles\city2.xml"
+# xml_file_path2 = "testingfiles\city5.xml"
 
-# Vectorize and compute cosine similarity
-final_similarity, field_similarities = vectorize_and_compute_similarity(
-    xml_file_path1, xml_file_path2
-)
+# # Vectorize and compute cosine similarity
+# final_similarity, field_similarities = vectorize_and_compute_similarity(
+#     xml_file_path1, xml_file_path2
+# )
 
-# Print the terms and vectors for each field
-for field_name, similarity_matrix in field_similarities.items():
-    print(f"\n{field_name} Cosine Similarity:")
-    print(similarity_matrix)
+# # Print the terms and vectors for each field
+# for field_name, similarity_matrix in field_similarities.items():
+#     print(f"\n{field_name} Cosine Similarity:")
+#     print(similarity_matrix)
 
-# Print the final similarity score
-print(f"\nFinal Similarity Score: {final_similarity}")
+# # Print the final similarity score
+# print(f"\nFinal Similarity Score: {final_similarity}")
