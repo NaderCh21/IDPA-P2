@@ -1,0 +1,11 @@
+Text Document Search Tool
+1. Title
+Smart Document Finder.
+2. Objective
+Create a smart tool for document retrieval that can intelligently categorize and find documents based on structural similarities.
+2.1. Guidelines
+Focus on user-friendly interfaces.
+2.1. Framework
+Developed with Java and incorporating AI algorithms.
+3. Background and Motivations
+In the era of information overload, finding relevant documents quickly is crucial. This tool aims to simplify the search process using smart algorithms.

@@ -4,6 +4,7 @@ from scipy.cluster.hierarchy import linkage, dendrogram
 import matplotlib.pyplot as plt
 from XML_Similarity import *
 
+
 def compute_xml_similarity_matrix(xml_paths, vectorize_and_compute_similarity):
     n = len(xml_paths)
     similarity_matrix = np.zeros((n, n))
@@ -16,30 +17,35 @@ def compute_xml_similarity_matrix(xml_paths, vectorize_and_compute_similarity):
 
     return similarity_matrix
 
+
 def hierarchical_clustering_on_similarity_matrix(similarity_matrix, num_clusters):
     # Use hierarchical agglomerative clustering
-    linkage_matrix = linkage(similarity_matrix, method='ward')
-    clustering_model = AgglomerativeClustering(n_clusters=num_clusters, linkage='ward')
+    linkage_matrix = linkage(similarity_matrix, method="ward")
+    clustering_model = AgglomerativeClustering(n_clusters=num_clusters, linkage="ward")
     clusters = clustering_model.fit_predict(linkage_matrix)
 
     return clusters
 
+
 def plot_dendrogram(similarity_matrix, xml_paths):
-    linkage_matrix = linkage(similarity_matrix, method='ward')
-    dendrogram(linkage_matrix, labels=[xml_path.split('/')[-1] for xml_path in xml_paths])
+    linkage_matrix = linkage(similarity_matrix, method="ward")
+    dendrogram(
+        linkage_matrix, labels=[xml_path.split("/")[-1] for xml_path in xml_paths]
+    )
     plt.title("Hierarchical Agglomerative Clustering Dendrogram")
     plt.xlabel("Document")
     plt.ylabel("Distance")
     plt.show()
 
+
 if __name__ == "__main__":
     xml_paths = [
-        "../testingfiles/city1.xml",
-        "../testingfiles/city2.xml",
-        "../testingfiles/city3.xml",
-        "../testingfiles/city4.xml",
-        "../testingfiles/food1.xml",
-        "../testingfiles/food2.xml",
+        "testingfiles/city1.xml",
+        "testingfiles/city2.xml",
+        "testingfiles/city3.xml",
+        "testingfiles/city4.xml",
+        "testingfiles/food1.xml",
+        "testingfiles/food2.xml"
     ]
 
     # Compute XML similarity matrix
@@ -54,8 +60,6 @@ if __name__ == "__main__":
     cluster_assignments_hierarchical = hierarchical_clustering_on_similarity_matrix(
         similarity_matrix, num_clusters_hierarchical
     )
-
- 
 
     # Print the hierarchical agglomerative clustering results
     print("Hierarchical Agglomerative Clustering Results:")

@@ -1,0 +1,18 @@
+Text Document Search Tool
+1. Title
+Text document Search Tool.
+2. Objective
+The main goal of this project is to implement a text document search tool, which
+searches for documents sharing structure-and–content similarity using a Vector
+Space Model (VSM-based) approach.
+2.1. Guidelines
+Null
+2.1. Framework
+It will be developed in the context of the IDPA course.
+3. Background and Motivations
+Text-rich documents are becoming increasingly available to describe all kinds of
+data, from academic reports and medical reports, to news articles and blogs.
+Here, we view a text document as a semi-structured document made of: a title,
+sections and subsections, each with its own header, as well textual paragraphs
+within each section or subsection. A sample document is shown in Figure 1, where
+title and section/subsection headers are highlighted in bold.
