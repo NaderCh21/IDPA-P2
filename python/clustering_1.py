@@ -4,6 +4,27 @@ import numpy as np
 from sklearn.cluster import KMeans
 import matplotlib.pyplot as plt
 import os
+from docx import Document
+
+
+def read_text_file(file_path):
+    with open(file_path, "r") as file:
+        return file.readlines()
+
+
+def read_docx_file(file_path):
+    doc = Document(file_path)
+    return [paragraph.text for paragraph in doc.paragraphs if paragraph.text]
+
+
+def convert_file_to_text(file_path):
+    _, file_extension = os.path.splitext(file_path)
+    if file_extension.lower() == ".txt":
+        return read_text_file(file_path)
+    elif file_extension.lower() == ".docx":
+        return read_docx_file(file_path)
+    else:
+        raise ValueError("Unsupported file format: " + file_extension)
 
 
 # Function to compute the similarity matrix for a list of XML files
@@ -61,6 +82,7 @@ def main():
     # Convert text files to XML
     xml_file_paths = []
     for text_file in text_file_paths:
+        lines = convert_file_to_text(text_file)
         xml_file = os.path.splitext(text_file)[0] + ".xml"
         convert_text_to_weighted_xml(text_file, xml_file)
         xml_file_paths.append(xml_file)
