@@ -62,21 +62,36 @@ def plot_cluster_results(xml_paths, cluster_assignments):
 
 
 xml_paths = [
-    "../testingfiles/city1.xml",
-    "../testingfiles/city2.xml",
-    "../testingfiles/city3.xml",
-    "../testingfiles/city4.xml",
-    "../testingfiles/food1.xml",
-    "../testingfiles/food2.xml",
+    "testingfiles/city1.xml",
+    "testingfiles/city2.xml",
+    "testingfiles/city3.xml",
+    "testingfiles/city4.xml",
+    "testingfiles/city5.xml",
+    "testingfiles/food1.xml",
+    "testingfiles/food2.xml",
 ]
+
+# Ask the user for the number of clusters
+while True:
+    user_input = input("Enter the number of clusters: ")
+
+    if not user_input.strip():  # Check if the input is not just whitespace or empty
+        print("Input cannot be empty. Please enter a number.")
+        continue
+
+    try:
+        num_clusters = int(user_input)
+        if num_clusters > 0:
+            break
+        else:
+            print("Please enter a positive integer.")
+    except ValueError:
+        print("Invalid input. Please enter an integer.")
 
 # Compute XML similarity matrix
 similarity_matrix = compute_xml_similarity_matrix(
     xml_paths, vectorize_and_compute_similarity
 )
-
-# Specify the number of clusters
-num_clusters = 2
 
 # Perform k-means clustering on the similarity matrix
 cluster_assignments = kmeans_clustering_on_similarity_matrix(
