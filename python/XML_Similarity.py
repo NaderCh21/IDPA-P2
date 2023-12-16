@@ -116,8 +116,8 @@ def vectorize_and_compute_similarity(xml_path1, xml_path2):
     return final_similarity_score
 
 
-# Example usage
-xml_file_path1 = "python/text_files/document_search_tool_1.xml"
-xml_file_path2 = "python/text_files/document_search_tool_2.xml"
-similarity_score = vectorize_and_compute_similarity(xml_file_path1, xml_file_path2)
-print(f"Similarity Score: {similarity_score}")
+# # Example usage
+# xml_file_path1 = "python/text_files/document_search_tool_1.xml"
+# xml_file_path2 = "python/text_files/document_search_tool_2.xml"
+# similarity_score = vectorize_and_compute_similarity(xml_file_path1, xml_file_path2)
+# print(f"Similarity Score: {similarity_score}")
