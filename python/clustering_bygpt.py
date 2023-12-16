@@ -5,14 +5,37 @@ from XML_Similarity import *  # Assuming this contains the required functions li
 import matplotlib.pyplot as plt
 
 
+def calculate_element_weights(xml_path):
+    tree = ET.parse(xml_path)
+    root = tree.getroot()
+
+    def assign_weights(element):
+        # Assuming a weight of 1 for parent elements and 0.5 for leaf elements
+        if len(element):  # If the element has children
+            weight = 1
+        else:
+            weight = 0.5
+        weights[element.tag] = weights.get(element.tag, 0) + weight
+        for child in element:
+            assign_weights(child)
+
+    weights = {}
+    assign_weights(root)
+    return weights
+
+
 def compute_xml_similarity_matrix(xml_paths, vectorize_and_compute_similarity):
     n = len(xml_paths)
     similarity_matrix = np.zeros((n, n))
 
     for i in range(n):
+        weights_i = calculate_element_weights(xml_paths[i])
         for j in range(i + 1, n):
-            similarity, _ = vectorize_and_compute_similarity(xml_paths[i], xml_paths[j])
-            # Use 1 - similarity to represent dissimilarity (lower values mean more similarity)
+            weights_j = calculate_element_weights(xml_paths[j])
+            # Modify this function to take weights into account
+            similarity, _ = vectorize_and_compute_similarity(
+                xml_paths[i], xml_paths[j], weights_i, weights_j
+            )
             similarity_matrix[i, j] = similarity_matrix[j, i] = 1 - similarity
 
     return similarity_matrix

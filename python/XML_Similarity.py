@@ -67,7 +67,7 @@ def get_document_fields(xml_path):
     return fields
 
 
-def vectorize_and_compute_similarity(xml_path1, xml_path2):
+def vectorize_and_compute_similarity(xml_path1, xml_path2, weights1, weights2):
     # Get fields for both documents
     fields1 = get_document_fields(xml_path1)
     fields2 = get_document_fields(xml_path2)
@@ -80,12 +80,6 @@ def vectorize_and_compute_similarity(xml_path1, xml_path2):
     print(f"Common Fields: {common_fields}")
     print(f"Unique Fields in Document 1: {unique_fields1}")
     print(f"Unique Fields in Document 2: {unique_fields2}")
-
-    # User input: Specify weights for each field
-    field_weights = {}
-    for field in common_fields:
-        weight = float(input(f"Enter the weight for field '{field}': "))
-        field_weights[field] = weight
 
     # Parse the first XML file
     tree1 = ET.parse(xml_path1)
@@ -120,21 +114,6 @@ def vectorize_and_compute_similarity(xml_path1, xml_path2):
             field_name, []
         ) + field_texts2.get(field_name, [])
 
-    # Print the terms and field vectors for each document
-    print("\nDocument 1:")
-    for field_name, texts in combined_texts.items():
-        print(f"\n{field_name} Terms: {texts}")
-        vectorizer = CountVectorizer()
-        X = vectorizer.fit_transform(texts)
-        print(f"{field_name} Vectors: {X.toarray()}")
-
-    print("\nDocument 2:")
-    for field_name, texts in combined_texts.items():
-        print(f"\n{field_name} Terms: {texts}")
-        vectorizer = CountVectorizer()
-        X = vectorizer.fit_transform(texts)
-        print(f"{field_name} Vectors: {X.toarray()}")
-
     # Vectorize and compute cosine similarity for each field
     field_similarities = {}
     final_similarity_score = 0.0
@@ -149,11 +128,17 @@ def vectorize_and_compute_similarity(xml_path1, xml_path2):
         vectors1 = vectors[: len(field_texts1.get(field_name, []))]
         vectors2 = vectors[len(field_texts1.get(field_name, [])) :]
 
+        # Apply weights based on XML structure
+        weight1 = weights1.get(field_name, 1.0)
+        weight2 = weights2.get(field_name, 1.0)
+        weighted_vectors1 = vectors1 * weight1
+        weighted_vectors2 = vectors2 * weight2
+
         # Compute cosine similarity for each pair of vectors
-        similarities = cosine_similarity(vectors1, vectors2)
+        similarities = cosine_similarity(weighted_vectors1, weighted_vectors2)
 
         # Compute the final similarity score for the field
-        field_similarity = field_weights.get(field_name, 1.0) * np.mean(similarities)
+        field_similarity = np.mean(similarities)
         final_similarity_score += field_similarity
 
         # Store the cosine similarity for the field
