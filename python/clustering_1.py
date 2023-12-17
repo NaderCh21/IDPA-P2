@@ -85,13 +85,13 @@ def plot_cluster_results(xml_paths, cluster_assignments):
 
 
 xml_paths = [
-    "testingfiles/city1.xml",
-    "testingfiles/city2.xml",
-    "testingfiles/city3.xml",
-    "testingfiles/city4.xml",
-    "testingfiles/city5.xml",
-    "testingfiles/food1.xml",
-    "testingfiles/food2.xml",
+    "../testingfiles/city1.xml",
+    "../testingfiles/city2.xml",
+    "../testingfiles/city3.xml",
+    "../testingfiles/city4.xml",
+    "../testingfiles/city5.xml",
+    "../testingfiles/food1.xml",
+    "../testingfiles/food2.xml",
 ]
 
 # Ask the user for the number of clusters
