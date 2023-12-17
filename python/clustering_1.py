@@ -89,7 +89,8 @@ xml_paths = [
     "../testingfiles/city2.xml",
     "../testingfiles/city3.xml",
     "../testingfiles/city4.xml",
-    "../testingfiles/city5.xml",
+    "../testingfiles/student1.xml",
+    "../testingfiles/student2.xml",
     "../testingfiles/food1.xml",
     "../testingfiles/food2.xml",
 ]

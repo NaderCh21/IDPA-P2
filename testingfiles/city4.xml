@@ -1,3 +1,14 @@
-<student>
- <Name>Nader COE</Name>
-</student>
+<city type="Istanbul">
+    <location>Turkey</location>
+    <about>Turkey, a transcontinental country located at the crossroads of Europe and Asia, boasts a rich cultural heritage and a diverse history. Istanbul, formerly known as Constantinople, stands as the largest city in Turkey, serving as the country's economic, cultural, and historic hub.</about>
+    <Hotels number="3">
+        <hotel rate="5 stars" loc="Taksim">Swissotel The Bosphorus Istanbul</hotel>
+        <hotel rate="5 stars" loc="Taksim">Taksim The Peak Hotel and SPA</hotel>
+        <hotel rate="4 stars" loc="Asian Side">ISG Sabiha Gökçen Airport Hotel</hotel>
+    </Hotels>
+    <places number="3">
+        <place type="Historical Mosque">Blue Mosque</place>
+        <place type="Historical Palace" otherNames="Cannon Gate">Topkapi Palace</place>
+        <place type="Historical Palace">Dolmabahçe Palace</place>
+    </places>
+</city>

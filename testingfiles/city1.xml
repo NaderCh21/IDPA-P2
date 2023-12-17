@@ -1,16 +1,16 @@
-<city type="Istanbul">
-
-    <location>Turkey</location>
-    <about>formerly known as Constantinople, is the largest city in Turkey, serving as the country's economic, cultural and historic hub</about>
-    <Hotels number = "3">
-    <hotel rate= "5 stars" loc = "Taksim">Swissotel The Bosphorus Istanbul</hotel>
-    <hotel rate= "5 stars" loc = "Taksim">Taksim The Peak Hotel and SPA</hotel>
-    <hotel rate= "4 stars" loc = "Asian Side">ISG Sabiha Gökçen Airport Hotel</hotel>
+<city type="Paris">
+    <location>France</location>
+    <about>known as the City of Lights, is the capital and most populous city of France. Renowned for its art, gastronomy, and culture.</about>
+    <Hotels number="4">
+        <hotel rate="5 stars" loc="Champs-Élysées">Four Seasons Hotel George V</hotel>
+        <hotel rate="4 stars" loc="Le Marais">Hôtel Caron de Beaumarchais</hotel>
+        <hotel rate="4 stars" loc="Montmartre">Terrass'' Hôtel Montmartre</hotel>
+        <hotel rate="3 stars" loc="Latin Quarter">Hôtel Les Dames du Panthéon</hotel>
     </Hotels>
-    <places number = "3">
-        <place type="Historical Mosque">Blue Mosque</place>
-        <place type="Historical Palace" otherNames = "Cannon Gate" >Topkapi Palace</place>
-        <place type="Historical Palace">Dolmabahçe Palace</place>
+    <places number="4">
+        <place type="Landmark">Eiffel Tower</place>
+        <place type="Museum">Louvre Museum</place>
+        <place type="Cathedral">Notre-Dame Cathedral</place>
+        <place type="Park">Luxembourg Gardens</place>
     </places>
-    
 </city>
