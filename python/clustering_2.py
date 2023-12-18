@@ -1,14 +1,9 @@
 import numpy as np
-from sklearn.cluster import AgglomerativeClustering
-from scipy.cluster.hierarchy import linkage, dendrogram
+from scipy.cluster.hierarchy import linkage, dendrogram, fcluster
 import matplotlib.pyplot as plt
 from XML_Similarity import *
-
-import numpy as np
-from sklearn.cluster import KMeans
+from scipy.cluster.hierarchy import inconsistent
 import xml.etree.ElementTree as ET
-from XML_Similarity import *  # Assuming this contains the required functions like normalize_text, get_document_fields, vectorize_and_compute_similarity
-import matplotlib.pyplot as plt
 
 
 def calculate_element_weights(xml_path):
@@ -16,7 +11,6 @@ def calculate_element_weights(xml_path):
     root = tree.getroot()
 
     def assign_weights(element):
-        # Assuming a weight of 1 for parent elements and 0.5 for leaf elements
         if len(element):  # If the element has children
             weight = 1
         else:
@@ -38,7 +32,6 @@ def compute_xml_similarity_matrix(xml_paths, vectorize_and_compute_similarity):
         weights_i = calculate_element_weights(xml_paths[i])
         for j in range(i + 1, n):
             weights_j = calculate_element_weights(xml_paths[j])
-            # Modify this function to take weights into account
             similarity, _ = vectorize_and_compute_similarity(
                 xml_paths[i], xml_paths[j], weights_i, weights_j
             )
@@ -46,14 +39,17 @@ def compute_xml_similarity_matrix(xml_paths, vectorize_and_compute_similarity):
 
     return similarity_matrix
 
-
-def hierarchical_clustering_on_similarity_matrix(similarity_matrix, num_clusters):
+def hierarchical_clustering_auto_num_clusters(similarity_matrix):
     # Use hierarchical agglomerative clustering
     linkage_matrix = linkage(similarity_matrix, method='ward')
-    clustering_model = AgglomerativeClustering(n_clusters=num_clusters, linkage='ward')
-    clusters = clustering_model.fit_predict(linkage_matrix)
+
+    # Automatically determine the number of clusters using the maximum distance criterion
+    max_distance = linkage_matrix[:, 2].max()
+    clusters = fcluster(linkage_matrix, t=max_distance, criterion='distance')
 
     return clusters
+
+
 
 def plot_dendrogram(similarity_matrix, xml_paths):
     linkage_matrix = linkage(similarity_matrix, method='ward')
@@ -63,16 +59,17 @@ def plot_dendrogram(similarity_matrix, xml_paths):
     plt.ylabel("Distance")
     plt.show()
 
+
 if __name__ == "__main__":
     xml_paths = [
-    "../testingfiles/city1.xml",
-    "../testingfiles/city2.xml",
-    "../testingfiles/city3.xml",
-    "../testingfiles/city4.xml",
-    "../testingfiles/student1.xml",
-    "../testingfiles/student2.xml",
-    "../testingfiles/food1.xml",
-    "../testingfiles/food2.xml",
+        "../testingfiles/city1.xml",
+        "../testingfiles/city2.xml",
+        "../testingfiles/city3.xml",
+        "../testingfiles/city4.xml",
+        "../testingfiles/student1.xml",
+        "../testingfiles/student2.xml",
+        "../testingfiles/food1.xml",
+        "../testingfiles/food2.xml",
     ]
 
     # Compute XML similarity matrix
@@ -80,15 +77,10 @@ if __name__ == "__main__":
         xml_paths, vectorize_and_compute_similarity
     )
 
-    # Specify the number of clusters
-    num_clusters_hierarchical = 2
-
-    # Perform hierarchical agglomerative clustering on the similarity matrix
-    cluster_assignments_hierarchical = hierarchical_clustering_on_similarity_matrix(
-        similarity_matrix, num_clusters_hierarchical
+    # Perform hierarchical agglomerative clustering with automatic determination of clusters
+    cluster_assignments_hierarchical = hierarchical_clustering_auto_num_clusters(
+        similarity_matrix
     )
-
- 
 
     # Print the hierarchical agglomerative clustering results
     print("Hierarchical Agglomerative Clustering Results:")
